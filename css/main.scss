@@ -1,0 +1,95 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box_list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: normal;
+}
+
+input {
+  cursor: pointer;
+}
+
+button {
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  text-align: center;
+  width: 80%;
+  margin: 5px 0;
+  cursor: pointer;
+}
+
+h3 {
+  display: flex;
+  justify-content: center;
+}
+
+ul {
+  padding: 0;
+  width: 100%;
+  margin: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0;
+  height: 30px;
+
+  &:hover {
+    .delete {
+      display: flex;
+    }
+  }
+
+}
+
+.wrap_delete {
+  width: 15px;
+}
+
+.delete {
+  color: red;
+  border: 1px solid red;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
+  width: unset;
+  display: none;
+
+}
+
+.add_task {
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  width: 80%;
+  margin: 5px 0;
+  cursor: pointer;
+
+  &::placeholder {
+    color: white;
+  }
+
+}
+
+.tabs {
+  margin: 5px 0;
+}
+
+.task:has(input:checked) {
+  span {
+    text-decoration: line-through;
+  }
+}
