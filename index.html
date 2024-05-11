@@ -11,8 +11,12 @@
           rel="stylesheet">
 </head>
 <body>
+<!-- fixme нет отступа внутри body, ошибка повторяется, ты должна учиться на ошибках, иначе какой смысл? -->
 <div class="box_list">
     <h3>TO DO List</h3>
+
+    <!-- todo каждый из блоков у которого подразумевается наличие класса должен иметь класс css начинающийся с приставки b_ -->
+    <!-- пример TODOList в js а в css он будет b_todo_list -->
     <div class="swichers tabs">
         <label for="all">
             <input type="radio" id="all" name="tab" required checked value="2">
@@ -30,6 +34,7 @@
     <label>
         <input class="add_task" type="text" size="40" placeholder="Новая задача">
     </label>
+
     <ul class="tasks">
         <li class="task">
             <input type="checkbox">
@@ -61,6 +66,7 @@
 <!--<script src="ViewListTaks.js"></script>-->
 <script src="SwichersListTasks.js"></script>
 <script>
+    <!-- fixme todolist create а получается boxlist, тебя ни чего не смущается, недопустимо использовать разные имена для одного и тогоже -->
     let boxList = TODOList.create();
 </script>
 </body>

@@ -1,5 +1,9 @@
 // Список
 class ListTasks {
+    // fixme это видимо статус правильное имя было бы LIST_TASKS_STATUS_ALL если бы он был объявлен за пределами класса ListTasks
+    // но так как он внутри то правильно будет STATUS_ALL
+    // fixme статуса all не бывает, бывает готово или не готово, видимо здесь не статусы а режимы отобрадения списка,
+    // но тут им не место так как список задач ни чего не должен знать про режимы
     static LIST_TASKS_ALL = 2;
     static LIST_TASKS_READY = 1;
     static LIST_TASKS_UNREADY = 0;
@@ -9,6 +13,9 @@ class ListTasks {
      */
     constructor($context) {
         this.$listTasks = $context;
+        // fixme смотрю я как ты смешала список задач и работу и спосок задач в local storage и вижу что ерунда получилась
+        // нужно local storage выносить в отдальный класс, и работать он долен так же как другие сторонние объекты подписываясь на события списка задач,
+        // разница лишь в том что список задач знает про этот класс и при инициализации заполняется из него
         this.getTaskFromLocalStorage(1);
         this.$listTasks.on('click', '.delete', (event) => {
             this.deleteTask(event)
@@ -18,6 +25,8 @@ class ListTasks {
     addTask(name_task, index)
     {
         let index_task = index;
+        // fixme тут должна быть одна многострочная шаблонная строка, неужели ты не чуствуешь, то что ты написала очень не удобно
+        // @see https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Template_literals
         let text = `<li class="task" data-index=${index_task}>\n` +
             '            <input type="checkbox">\n' +
             `            <span>${name_task}</span>\n` +
@@ -60,6 +69,7 @@ class ListTasks {
         this.$listTasks.empty();
         if (swicher === ListTasks.LIST_TASKS_READY)
         {
+            // fixme следи за форматированием
                 tasks.forEach((element, index) =>
                 {
                     this.addTask(element[ListTasks.LIST_TASKS_READY], index);
@@ -85,6 +95,7 @@ class ListTasks {
             });
         }
     }
+
 
     getTaskFromLocalStorage(status)
     {
@@ -122,6 +133,7 @@ class ListTasks {
         }
     }
 
+    // fixme не делай синхронизацию списков, сделай проще просто сохраняй в storage при каждом изменении списка задач
     deleteFromLocalStorage(index)
     {
         let list_tasks = localStorage.getItem('tasks');
