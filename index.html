@@ -12,62 +12,58 @@
 </head>
 <body>
 <!-- fixme нет отступа внутри body, ошибка повторяется, ты должна учиться на ошибках, иначе какой смысл? -->
-<div class="box_list">
-    <h3>TO DO List</h3>
+    <div class="b_list_tasks">
+        <h3>TO DO List</h3>
 
-    <!-- todo каждый из блоков у которого подразумевается наличие класса должен иметь класс css начинающийся с приставки b_ -->
-    <!-- пример TODOList в js а в css он будет b_todo_list -->
-    <div class="swichers tabs">
-        <label for="all">
-            <input type="radio" id="all" name="tab" required checked value="2">
-            <span>Все</span>
+        <!-- todo каждый из блоков у которого подразумевается наличие класса должен иметь класс css начинающийся с приставки b_ -->
+        <!-- пример TODOList в js а в css он будет b_todo_list -->
+        <div class="swichers tabs">
+            <label for="all">
+                <input type="radio" id="all" name="tab" required checked value="2">
+                <span>Все</span>
+            </label>
+            <label for="unready">
+                <input type="radio" id="unready" name="tab" required value="0">
+                <span>Неготовые</span>
+            </label>
+            <label for="ready">
+                <input type="radio" id="ready" name="tab" required  value="1">
+                <span>Готовые</span>
+            </label>
+        </div>
+        <label>
+            <input class="add_task" type="text" size="40" placeholder="Новая задача">
         </label>
-        <label for="unready">
-            <input type="radio" id="unready" name="tab" required value="0">
-            <span>Неготовые</span>
-        </label>
-        <label for="ready">
-            <input type="radio" id="ready" name="tab" required  value="1">
-            <span>Готовые</span>
-        </label>
+
+        <ul class="tasks">
+            <li class="task">
+                <input type="checkbox">
+                <span>Задача 1</span>
+                <div class="wrap_delete">
+                    <button class="delete">x</button>
+                </div>
+            </li>
+            <li class="task">
+                <input type="checkbox">
+                <span>Задача 2</span>
+                <div class="wrap_delete">
+                    <button class="delete">x</button>
+                </div>
+            </li>
+        </ul>
+        <button class="delete_all">Удалить все</button>
+        <button class="delete_ready">Удалить готовые</button>
     </div>
-    <label>
-        <input class="add_task" type="text" size="40" placeholder="Новая задача">
-    </label>
-
-    <ul class="tasks">
-        <li class="task">
-            <input type="checkbox">
-            <span>Задача 1</span>
-            <div class="wrap_delete">
-                <button class="delete">x</button>
-            </div>
-        </li>
-        <li class="task">
-            <input type="checkbox">
-            <span>Задача 2</span>
-            <div class="wrap_delete">
-                <button class="delete">x</button>
-            </div>
-        </li>
-    </ul>
-    <button class="delete_all">Удалить все</button>
-    <button class="delete_ready">Удалить готовые</button>
-</div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="TODOList.js"></script>
-<script src="ListTasks.js"></script>
-<script src="Task.js"></script>
-<!--<script src="DeletTasks.js"></script>-->
-<!--<script src="ViewListTaks.js"></script>-->
-<script src="SwichersListTasks.js"></script>
-<script>
-    <!-- fixme todolist create а получается boxlist, тебя ни чего не смущается, недопустимо использовать разные имена для одного и тогоже -->
-    let boxList = TODOList.create();
-</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="ListTasks.js"></script>
+    <script src="Tasks.js"></script>
+    <script>
+        <!-- fixme todolist create а получается boxlist, тебя ни чего не смущается, недопустимо использовать разные имена для одного и тогоже ok-->
+        let listTasks = new ListTasks($('.tasks'));
+    </script>
 </body>
 </html>
