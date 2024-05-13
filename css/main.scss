@@ -89,7 +89,7 @@ li {
   margin: 5px 0;
 }
 
-.task:has(input:checked) {
+.b_task:has(input:checked) {
   span {
     text-decoration: line-through;
   }
