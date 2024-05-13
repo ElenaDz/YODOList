@@ -1,5 +1,3 @@
-// fixme добавь скомпелированный css ok
-
 body {
   display: flex;
   justify-content: center;
@@ -44,13 +42,9 @@ li {
   align-items: center;
   margin: 5px 0;
   height: 30px;
-
-  &:hover {
-    .delete {
-      display: flex;
-    }
-  }
-
+}
+li:hover .delete {
+  display: flex;
 }
 
 .wrap_delete {
@@ -66,7 +60,6 @@ li {
   padding: 3px;
   width: unset;
   display: none;
-
 }
 
 .add_task {
@@ -79,19 +72,17 @@ li {
   width: 80%;
   margin: 5px 0;
   cursor: pointer;
-
-  &::placeholder {
-    color: white;
-  }
-
+}
+.add_task::placeholder {
+  color: white;
 }
 
 .b_tabs {
   margin: 5px 0;
 }
 
-.task:has(input:checked) {
-  span {
-    text-decoration: line-through;
-  }
+.task:has(input:checked) span {
+  text-decoration: line-through;
 }
+
+/*# sourceMappingURL=main.css.map */

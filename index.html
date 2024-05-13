@@ -15,7 +15,7 @@
         <h3>TO DO List</h3>
 
         <!-- fixme у блока у которого есть свой объект класс в html и имя класса в js  должны быть одинаковые в данном случае в html b_list_task а в js ListTasks, измени здесь класс -->
-        <ul class="task">
+        <ul class="b_list_tasks">
             <li class="task">
                 <input type="checkbox">
                 <span>Задача 1</span>
@@ -37,11 +37,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
             integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- fixme порядок подключения фалов не приавльный ListTasks зависит от Tasks поэтому он должен быть ниже Tasks-->
-    <script src="ListTasks.js"></script>
+    <!-- fixme порядок подключения фалов не приавльный ListTasks зависит от Tasks поэтому он должен быть ниже Tasks ок-->
     <script src="Tasks.js"></script>
+    <script src="ListTasks.js"></script>
+
     <script>
-        let listTasks = new ListTasks($('.task'));
+        let listTasks = new ListTasks($('.b_list_tasks'));
     </script>
 </body>
 </html>

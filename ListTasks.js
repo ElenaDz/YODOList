@@ -1,5 +1,6 @@
 // fixme фигурная скобка
-class ListTasks {
+class ListTasks
+{
     /** @type {Tasks[]} */
     tasks = [];
 
@@ -10,11 +11,12 @@ class ListTasks {
      * @param {JQuery}$context
      */
 	// fixme фигурная скобка
-    constructor($context) {
+    constructor($context)
+    {
         this.$context = $context;
 
         // fixme здесь мы передаем в каком контексте искать задачи, а именно в контексте списка,
-        // но мы ни чего не знаем про то как устроены задачи поэтому здесь именно класс задачи быть не должно
-        this.tasks = Tasks.create(this.$context.find('.task'));
+        // но мы ни чего не знаем про то как устроены задачи поэтому здесь именно класс задачи быть не должно ok
+        this.tasks = Task.create(this.$context);
     }
 }
