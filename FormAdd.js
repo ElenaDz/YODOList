@@ -9,7 +9,8 @@ class FormAdd
         this.$context = $context;
         this.$context.on('keydown', (event) =>
         {
-            if (event.key === 'Enter') {
+            if (event.key === 'Enter')
+            {
                 this.$context.trigger(FormAdd.EVENT_SUBMIT);
                 return false;
             }

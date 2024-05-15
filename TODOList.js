@@ -10,7 +10,8 @@ class TODOList
         this.formAdd.$context.on(FormAdd.EVENT_SUBMIT, () =>
         {
             let listTasks = $('.b_list_tasks').data('ListTasks');
-            listTasks.addTask();
+            listTasks.addTask(this.formAdd.$context.val());
+            this.formAdd.$context.val('');
         });
 
     }

@@ -10,7 +10,10 @@ class Task
     constructor($context)
     {
         this.$context = $context;
-
+        if (this.$context.data('Task') !== undefined){
+            return false;
+        }
+        this.$context.data('Task', this);
         this.$context.on('click', '.delete', () => {
             this.delete()
         });

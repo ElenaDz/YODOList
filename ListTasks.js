@@ -20,7 +20,23 @@ class ListTasks
 
     addTask(name_task)
     {
+        this.$context.prepend(this.getTemplate(name_task));
+        Task.create(this.$context);
+    }
 
+    getTemplate(name_task)
+    {
+        let text =`<li class="b_task" data_task="">\n 
+                            <div class="inner_task">\n 
+                                <input type="checkbox">\n
+                                <span>${name_task}</span>\n 
+                            </div>\n 
+                                <div class="wrap_delete">\n 
+                                <button class="delete">x</button>\n 
+                            </div>\n 
+                        </li>`
+
+        return text;
     }
 
     /**
