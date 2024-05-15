@@ -1,6 +1,7 @@
 class FormAdd
 {
     static EVENT_SUBMIT = 'FormAdd.EVENT_SUBMIT';
+    
     /**
      * @param {JQuery}$context
      */

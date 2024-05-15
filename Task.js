@@ -10,10 +10,13 @@ class Task
     constructor($context)
     {
         this.$context = $context;
+
+        // fixme много лишнего, исправь на то что прислал я на скриншете
         if (this.$context.data('Task') !== undefined){
             return false;
         }
         this.$context.data('Task', this);
+
         this.$context.on('click', '.delete', () => {
             this.delete()
         });
@@ -21,9 +24,6 @@ class Task
 
     get ready()
     {
-        // fixme prop ready не существует, это мы придумали, тебе тут нужно не то что мы придумали а реально сущесвующий prop checked
-        // разберись пожалуйста в что такое реально существующие свойства а что такое придуманые нами свойства объекта
-        // исправь везде ок
         return this.$context.find('input[type=checkbox]').prop('checked');
     }
 
@@ -37,6 +37,12 @@ class Task
         this.$context.remove();
     }
 
+    static getTemplate(text)
+    {
+        return `
+        
+        `;
+    }
 
     /**
      * @param {JQuery}$context
