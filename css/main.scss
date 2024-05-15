@@ -1,22 +1,44 @@
 // fixme нужно исправить верстку
-// 1 todo list имеет фиксированную ширину
-// 2 если задача не помещается на одну строку она переноситься на другую
-// 3 кнопки удалить выровнены по правому краю
-// 4 кнопка удалить должна иметь отступ от текста задачи они не должны быить впритык
-// 5 текст задчи выровнять влево
-// 6 на мобильной версии todo list на всю ширину окана с отступами 10px
-// 7 поменять шрифт на поприятнее
+// 1 todo list имеет фиксированную ширину ok
+// 2 если задача не помещается на одну строку она переноситься на другую ok
+// 3 кнопки удалить выровнены по правому краю ok
+// 4 кнопка удалить должна иметь отступ от текста задачи они не должны быить впритык ok
+// 5 текст задчи выровнять влево ok
+// 6 на мобильной версии todo list на всю ширину окана с отступами 10px ok
+// 7 поменять шрифт на поприятнее ok
+@mixin _for_phone {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
 body {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Roboto", sans-serif;
 }
 
-.box_list {
+.b_todo_list {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: normal;
+  width: 340px;
+
+  @include _for_phone {
+    width: 100%;
+    padding: 10px;
+
+    .delete {
+      display: block;
+      width: 16px;
+    }
+
+    button, .add_task {
+      width: 100%;
+    }
+  }
 }
 
 input {
@@ -31,6 +53,7 @@ button {
   width: 80%;
   margin: 5px 0;
   cursor: pointer;
+  font-family: "Roboto", sans-serif;
 }
 
 h3 {
@@ -47,13 +70,23 @@ ul {
 li {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
   margin: 5px 0;
-  height: 30px;
+  min-height: 30px;
 
   &:hover {
     .delete {
       display: flex;
+    }
+  }
+  .inner_task {
+    display: flex;
+    justify-content: left;
+    align-items: start;
+
+    span {
+      padding: 0 15px;
+      word-break: break-all;
     }
   }
 
@@ -61,6 +94,7 @@ li {
 
 .wrap_delete {
   width: 15px;
+  margin-right: 10px;
 }
 
 .delete {
@@ -69,9 +103,11 @@ li {
   background-color: white;
   justify-content: center;
   align-items: center;
-  padding: 3px;
-  width: unset;
+  padding: 0 3px 1px 3px;
+  width: 16px;
   display: none;
+  margin: 0;
+
 
 }
 

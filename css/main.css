@@ -2,13 +2,28 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Roboto", sans-serif;
 }
 
-.box_list {
+.b_todo_list {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: normal;
+  width: 340px;
+}
+@media (max-width: 767px) {
+  .b_todo_list {
+    width: 100%;
+    padding: 10px;
+  }
+  .b_todo_list .delete {
+    display: block;
+    width: 16px;
+  }
+  .b_todo_list button, .b_todo_list .add_task {
+    width: 100%;
+  }
 }
 
 input {
@@ -23,6 +38,7 @@ button {
   width: 80%;
   margin: 5px 0;
   cursor: pointer;
+  font-family: "Roboto", sans-serif;
 }
 
 h3 {
@@ -39,16 +55,26 @@ ul {
 li {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
   margin: 5px 0;
-  height: 30px;
+  min-height: 30px;
 }
 li:hover .delete {
   display: flex;
 }
+li .inner_task {
+  display: flex;
+  justify-content: left;
+  align-items: start;
+}
+li .inner_task span {
+  padding: 0 15px;
+  word-break: break-all;
+}
 
 .wrap_delete {
   width: 15px;
+  margin-right: 10px;
 }
 
 .delete {
@@ -57,9 +83,10 @@ li:hover .delete {
   background-color: white;
   justify-content: center;
   align-items: center;
-  padding: 3px;
-  width: unset;
+  padding: 0 3px 1px 3px;
+  width: 16px;
   display: none;
+  margin: 0;
 }
 
 .add_task {
