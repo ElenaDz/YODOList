@@ -8,13 +8,10 @@ class FormAdd
     constructor($context)
     {
         this.$context = $context;
-        this.$context.on('keydown', (event) =>
+        this.$context.parents().on('submit', (event) =>
         {
-            if (event.key === 'Enter')
-            {
                 this.$context.trigger(FormAdd.EVENT_SUBMIT);
                 return false;
-            }
         });
     }
 
