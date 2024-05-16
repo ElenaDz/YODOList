@@ -19,6 +19,7 @@
 <body>
     <div class="b_todo_list">
         <h3>TO DO List</h3>
+
         <div class="swichers b_tabs">
             <label for="all">
                 <input type="radio" id="all" name="tab" required checked value="2">
@@ -34,8 +35,6 @@
             </label>
         </div>
 
-        <!-- fixme не вижу здесь формы вокруг input, а она должено быть ok-->
-        <!-- fixme забыла префикс b_ -->
         <form class="b_add_task">
             <input class="add_task" type="text" size="40" placeholder="Новая задача" required>
         </form>
@@ -66,6 +65,7 @@
         <script>
             ListTasks.create($('body'));
         </script>
+
         <button class="delete_all">Удалить все</button>
         <button class="delete_ready">Удалить готовые</button>
     </div>

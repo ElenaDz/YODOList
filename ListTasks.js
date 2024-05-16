@@ -14,6 +14,7 @@ class ListTasks
     {
         this.$context = $context;
 
+        // fixme измени как тут Task.js:14
         this.$context.data('ListTasks', this);
 
         this.tasks = Task.create(this.$context);
@@ -23,11 +24,11 @@ class ListTasks
     {
         this.$context.prepend(Task.getTemplate(name_task));
 
-        // fixme забыла обновить свойство tasks этого класса ok
-         Task.create(this.$context);
+        // fixme забыла обновить свойство tasks этого класса
+        // ты тут ни исправила ни чего, смотри 19 строку этого класса и посмотри на эту строку, похожи но отличаются, почему?
+        Task.create(this.$context);
     }
 
-    // fixme перенеси метод в класс Task, я там его уже создал ok
 
     /**
      * @param {JQuery}$context

@@ -1,4 +1,3 @@
-// fixme Имя файла и имя класса должны совпадать ок
 class Task
 {
 	/** @type JQuery $context */
@@ -10,10 +9,14 @@ class Task
     constructor($context)
     {
         this.$context = $context;
-        // fixme много лишнего, исправь на то что прислал я на скриншете ok
+
         if (this.$context[0].Task) return;
+
         this.$context[0].Task = this;
+
+        // зачем это?
         this.ready = false;
+
         this.$context.on('click', '.delete', () => {
             this.delete()
         });
@@ -34,17 +37,19 @@ class Task
         this.$context.remove();
     }
 
+    // fixme снова не используешь рефактрорин и плодишь ошибки, ужас, вижно же что переменная серая не спроста ведь это, наведи курсор посомтри почему,
+    // там написано что переменная не используется
     static getTemplate(text)
     {
         return `
             <li class="b_task">
-                    <div class="inner_task">
-                        <input type="checkbox">
-                        <span>${name_task}</span>
-                    </div>
-                    <div class="wrap_delete">
-                        <button class="delete">x</button>
-                    </div>
+                <div class="inner_task">
+                    <input type="checkbox">
+                    <span>${name_task}</span>
+                </div>
+                <div class="wrap_delete">
+                    <button class="delete">x</button>
+                </div>
             </li>
         `;
     }
