@@ -1,9 +1,7 @@
 
 class ListTasks
 {
-    // fixme избавься от этой переменной так как мы ее не используем, а только доставляет головную боль с необходимостью сонхронизировать ее с состоянием dom
-    /** @type {Task[]} */
-    tasks = [];
+    // fixme избавься от этой переменной так как мы ее не используем, а только доставляет головную боль с необходимостью сонхронизировать ее с состоянием dom  ок
 
     /** @type {JQuery} $context */
     $context;
@@ -15,17 +13,18 @@ class ListTasks
     {
         this.$context = $context;
 
-        // todo добавь защиту от повторного создания объекта, если он раньше уже был создан, по аналогии как здесь Task.js:13
+        // todo добавь защиту от повторного создания объекта, если он раньше уже был создан, по аналогии как здесь Task.js:13 ok
+        if (this.$context[0].ListTasks) return;
         this.$context[0].ListTasks = this;
 
-        this.tasks = Task.create(this.$context);
+        Task.create(this.$context);
     }
 
     addTask(name_task)
     {
         this.$context.prepend(Task.getTemplate(name_task));
 
-        this.tasks = Task.create(this.$context);
+        Task.create(this.$context);
     }
 
 
@@ -33,11 +32,9 @@ class ListTasks
      * @param {JQuery} $context
      * @return ListTasks
      */
-    // todo сделай параметр $context не обязательным, по умолчанию будет равен $('body'), ну и поменяй вызовы этого метода увери не обязательный параметр из вызова
-    static create($context)
+    // todo сделай параметр $context не обязательным, по умолчанию будет равен $('body'), ну и поменяй вызовы этого метода увери не обязательный параметр из вызова ок?
+    static create($context = $('body'))
     {
-        let $listTasks = $context.find('.b_list_tasks');
-
-        return new ListTasks($listTasks);
+        return new ListTasks($context.find('.b_list_tasks'));
     }
 }

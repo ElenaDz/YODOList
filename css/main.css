@@ -26,10 +26,6 @@ body {
   }
 }
 
-input {
-  cursor: pointer;
-}
-
 button {
   border-radius: 5px;
   border: none;
@@ -90,18 +86,11 @@ li .inner_task span {
 }
 
 .b_add_task {
-  background-color: lightgray;
-  color: black;
-  border: none;
   border-radius: 5px;
   padding: 5px;
   text-align: center;
   width: 80%;
   margin: 5px 0;
-  cursor: unset;
-}
-.b_add_task::placeholder {
-  color: black;
 }
 
 .b_tabs {
