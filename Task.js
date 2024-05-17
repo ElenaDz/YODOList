@@ -14,9 +14,6 @@ class Task
 
         this.$context[0].Task = this;
 
-        // зачем это?
-        this.ready = false;
-
         this.$context.on('click', '.delete', () => {
             this.delete()
         });
@@ -37,9 +34,9 @@ class Task
         this.$context.remove();
     }
 
-    // fixme снова не используешь рефактрорин и плодишь ошибки, ужас, вижно же что переменная серая не спроста ведь это, наведи курсор посомтри почему,
+    // fixme снова не используешь рефактрорин и плодишь ошибки, ужас, вижно же что переменная серая не спроста ведь это, наведи курсор посомтри почему, ok
     // там написано что переменная не используется
-    static getTemplate(text)
+    static getTemplate(name_task)
     {
         return `
             <li class="b_task">

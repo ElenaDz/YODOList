@@ -35,11 +35,11 @@
             </label>
         </div>
 
-        <form class="b_add_task">
-            <input class="add_task" type="text" size="40" placeholder="Новая задача" required>
+        <form class="wrap_add_task">
+            <input class="b_add_task" type="text" size="40" placeholder="Новая задача" required>
         </form>
         <script>
-            FormAdd.create($('.b_add_task'))
+            new FormAdd($('.b_add_task'))
         </script>
 
         <ul class="b_list_tasks">

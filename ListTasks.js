@@ -14,9 +14,8 @@ class ListTasks
     {
         this.$context = $context;
 
-        // fixme измени как тут Task.js:14
-        this.$context.data('ListTasks', this);
-
+        // fixme измени как тут Task.js:14 ok
+        this.$context[0].ListTasks = this;
         this.tasks = Task.create(this.$context);
     }
 
@@ -24,9 +23,9 @@ class ListTasks
     {
         this.$context.prepend(Task.getTemplate(name_task));
 
-        // fixme забыла обновить свойство tasks этого класса
+        // fixme забыла обновить свойство tasks этого класса ok
         // ты тут ни исправила ни чего, смотри 19 строку этого класса и посмотри на эту строку, похожи но отличаются, почему?
-        Task.create(this.$context);
+        this.tasks = Task.create(this.$context);
     }
 
 

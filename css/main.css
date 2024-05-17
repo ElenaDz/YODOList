@@ -21,7 +21,7 @@ body {
     display: block;
     width: 16px;
   }
-  .b_todo_list button, .b_todo_list .add_task {
+  .b_todo_list button, .b_todo_list .b_add_task {
     width: 100%;
   }
 }
@@ -78,8 +78,8 @@ li .inner_task span {
 }
 
 .delete {
-  color: red;
-  border: 1px solid red;
+  color: black;
+  border: 1px solid black;
   background-color: white;
   justify-content: center;
   align-items: center;
@@ -89,19 +89,19 @@ li .inner_task span {
   margin: 0;
 }
 
-.add_task {
-  background-color: green;
-  color: white;
+.b_add_task {
+  background-color: lightgray;
+  color: black;
   border: none;
   border-radius: 5px;
   padding: 5px;
   text-align: center;
   width: 80%;
   margin: 5px 0;
-  cursor: pointer;
+  cursor: unset;
 }
-.add_task::placeholder {
-  color: white;
+.b_add_task::placeholder {
+  color: black;
 }
 
 .b_tabs {
