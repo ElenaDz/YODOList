@@ -4,7 +4,7 @@ class Task
 	$context;
 
     /**
-     * @param {JQuery}$context
+     * @param {JQuery} $context
      */
     constructor($context)
     {
@@ -34,8 +34,7 @@ class Task
         this.$context.remove();
     }
 
-    // fixme снова не используешь рефактрорин и плодишь ошибки, ужас, вижно же что переменная серая не спроста ведь это, наведи курсор посомтри почему, ok
-    // там написано что переменная не используется
+
     static getTemplate(name_task)
     {
         return `

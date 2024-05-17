@@ -1,21 +1,23 @@
 
 class ListTasks
 {
+    // fixme избавься от этой переменной так как мы ее не используем, а только доставляет головную боль с необходимостью сонхронизировать ее с состоянием dom
     /** @type {Task[]} */
     tasks = [];
 
-    /** @type JQuery $context */
+    /** @type {JQuery} $context */
     $context;
 
     /**
-     * @param {JQuery}$context
+     * @param {JQuery} $context
      */
     constructor($context)
     {
         this.$context = $context;
 
-        // fixme измени как тут Task.js:14 ok
+        // todo добавь защиту от повторного создания объекта, если он раньше уже был создан, по аналогии как здесь Task.js:13
         this.$context[0].ListTasks = this;
+
         this.tasks = Task.create(this.$context);
     }
 
@@ -23,19 +25,19 @@ class ListTasks
     {
         this.$context.prepend(Task.getTemplate(name_task));
 
-        // fixme забыла обновить свойство tasks этого класса ok
-        // ты тут ни исправила ни чего, смотри 19 строку этого класса и посмотри на эту строку, похожи но отличаются, почему?
         this.tasks = Task.create(this.$context);
     }
 
 
     /**
-     * @param {JQuery}$context
+     * @param {JQuery} $context
+     * @return ListTasks
      */
+    // todo сделай параметр $context не обязательным, по умолчанию будет равен $('body'), ну и поменяй вызовы этого метода увери не обязательный параметр из вызова
     static create($context)
     {
         let $listTasks = $context.find('.b_list_tasks');
 
-        return  new ListTasks($listTasks);
+        return new ListTasks($listTasks);
     }
 }
