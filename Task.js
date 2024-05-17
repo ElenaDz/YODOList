@@ -34,7 +34,7 @@ class Task
         this.$context.remove();
     }
 
-
+    // fixme мы находимся в объекте Task зачему в имени параметра слово task, если без него и так понятно про чье имя идет речь
     static getTemplate(name_task)
     {
         return `

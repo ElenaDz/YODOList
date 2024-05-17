@@ -1,4 +1,3 @@
-// fixme Убери стили с поля ввода новой задачи, все эти стили не подходящие, не хочу тратить время объясняя почему, пускай будут стили по-умолчанию для поля ввода текста ok
 @mixin _for_phone {
   @media (max-width: 767px) {
     @content;
@@ -103,6 +102,7 @@ li {
 .b_add_task {
   border-radius: 5px;
   padding: 5px;
+  // fixme просил же сделать стили по умолчанию
   text-align: center;
   width: 80%;
   margin: 5px 0;
