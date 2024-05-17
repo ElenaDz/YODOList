@@ -7,13 +7,12 @@ class FormAdd
     {
         this.$context = $context;
 
-        this.$context.parents().on('submit', (event) =>
+        this.$context.on('submit', (event) =>
         {
             let listTask =  ListTasks.create($('body'));
 
-            listTask.addTask(this.$context.val());
-
-            this.$context.val("");
+            listTask.addTask(this.$context.children().val());
+            this.$context.children().val("");
 
             return false;
         });
