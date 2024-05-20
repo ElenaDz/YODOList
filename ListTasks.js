@@ -2,6 +2,7 @@
 class ListTasks
 {
     static EVENT_ADD_EVENT = 'add_event';
+
     /** @type {JQuery} $context */
     $context;
 
@@ -15,8 +16,9 @@ class ListTasks
         if (this.$context[0].ListTasks) return;
         this.$context[0].ListTasks = this;
 
-        this.store = new ListTasksStore();
         Task.create(this.$context);
+
+        this.buildTasks();
     }
 
     addTask(name_task, ready = null)
@@ -24,14 +26,20 @@ class ListTasks
         this.$context.prepend(Task.getTemplate(name_task));
 
         Task.create(this.$context);
+
+        // fixme событие "добавление задачи" а не "добавление события" переименуй
         this.$context.trigger(ListTasks.EVENT_ADD_EVENT);
     }
+
     getTask()
     {
         return(Task.create(this.$context));
     }
+
     buildTasks()
     {
+		this.store = new ListTasksStore();
+
         let build_tasks = '';
 
         this.getTask().forEach((element, index) =>
@@ -41,10 +49,9 @@ class ListTasks
 
             build_tasks = build_tasks + Task.getTemplate(name, ready);
         });
+
         ListTasks.create();
-
     }
-
 
     /**
      * @param {JQuery} $context

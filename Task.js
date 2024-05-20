@@ -2,6 +2,7 @@ class Task
 {
     static EVENT_STATUS_CHANGE = 'status_change';
     static EVENT_TASK_DELETE = 'delete_task';
+
 	/** @type JQuery $context */
 	$context;
 
@@ -29,16 +30,17 @@ class Task
     set ready(ready)
     {
         this.$context.find('input[type=checkbox]').prop('checked', ready);
+
         this.$context.trigger(Task.EVENT_STATUS_CHANGE);
     }
 
     delete()
     {
         this.$context.remove();
+
         this.$context.trigger(Task.EVENT_TASK_DELETE);
     }
 
-    // fixme мы находимся в объекте Task зачему в имени параметра слово task, если без него и так понятно про чье имя идет речь ok
     static getTemplate(name, ready = null)
     {
         return `
