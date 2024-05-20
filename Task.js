@@ -1,5 +1,7 @@
 class Task
 {
+    static EVENT_STATUS_CHANGE = 'status_change';
+    static EVENT_TASK_DELETE = 'delete_task';
 	/** @type JQuery $context */
 	$context;
 
@@ -27,27 +29,35 @@ class Task
     set ready(ready)
     {
         this.$context.find('input[type=checkbox]').prop('checked', ready);
+        this.$context.trigger(Task.EVENT_STATUS_CHANGE);
     }
 
     delete()
     {
         this.$context.remove();
+        this.$context.trigger(Task.EVENT_TASK_DELETE);
     }
 
-    // fixme мы находимся в объекте Task зачему в имени параметра слово task, если без него и так понятно про чье имя идет речь
-    static getTemplate(name_task)
+    // fixme мы находимся в объекте Task зачему в имени параметра слово task, если без него и так понятно про чье имя идет речь ok
+    static getTemplate(name, ready = null)
     {
         return `
             <li class="b_task">
                 <div class="inner_task">
                     <input type="checkbox">
-                    <span>${name_task}</span>
+                    <span class="name">${name}</span>
                 </div>
                 <div class="wrap_delete">
                     <button class="delete">x</button>
                 </div>
             </li>
         `;
+    }
+
+    getName()
+    {
+        return this.$context.find('.name').text();
+
     }
 
     /**

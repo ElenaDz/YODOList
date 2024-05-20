@@ -12,11 +12,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
             integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="ListTasksStore.js"></script>
     <script src="FormAdd.js"></script>
     <script src="Task.js"></script>
     <script src="ListTasks.js"></script>
 </head>
 <body>
+
     <div class="b_todo_list">
         <h3>TO DO List</h3>
 
@@ -36,36 +38,19 @@
         </div>
 
         <form class="b_form_add_task">
-            <!-- fixme b_add_task у нас нет такого объекта а значит и префикс b_ тут не нужен-->
-            <input class="b_add_task" type="text" placeholder="Новая задача" required>
+            <!-- fixme b_add_task у нас нет такого объекта а значит и префикс b_ тут не нужен ок-->
+            <input class="add_task" type="text" placeholder="Новая задача" required>
         </form>
         <script>
             new FormAdd($('.b_form_add_task'))
         </script>
 
         <ul class="b_list_tasks">
-            <li class="b_task">
-                <div class="inner_task">
-                    <input type="checkbox">
-                    <span>Задача 1</span>
-                </div>
-                <div class="wrap_delete">
-                    <button class="delete">x</button>
-                </div>
-            </li>
-            <li class="b_task">
-                <div class="inner_task">
-                    <input type="checkbox">
-                    <span>Задача 2</span>
-                </div>
-                <div class="wrap_delete">
-                    <button class="delete">x</button>
-                </div>
-            </li>
+
         </ul>
         <script>
-			// fixme зачему здесь указано бади когда значение по умолчанию бади
-            ListTasks.create($('body'));
+			// fixme зачему здесь указано бади когда значение по умолчанию бади ok
+            ListTasks.create();
         </script>
 
         <button class="delete_all">Удалить все</button>

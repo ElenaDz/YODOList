@@ -85,10 +85,9 @@ li .inner_task span {
   margin: 0;
 }
 
-.b_add_task {
+.add_task {
   border-radius: 5px;
   padding: 5px;
-  text-align: center;
   width: 80%;
   margin: 5px 0;
 }
