@@ -45,6 +45,7 @@ class Task
         this.$context.find('input[type=checkbox]').prop('checked', ready);
     }
 
+
     delete()
     {
         this.$context.trigger(Task.EVENT_TASK_DELETE);
@@ -52,6 +53,8 @@ class Task
         this.$context.remove();
     }
 
+
+    // fixme ready не используется а должен
     static getTemplate(name, ready = null)
     {
         return `
@@ -67,11 +70,13 @@ class Task
         `;
     }
 
+
+    // todo переделай в getter по аналогии как сделано для ready
     getName()
     {
         return this.$context.find('.name').text();
-
     }
+
 
     /**
      * @param {JQuery}$context

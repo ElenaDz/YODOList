@@ -13,6 +13,7 @@ class ListTasks
     {
         this.$context = $context;
 
+        // fixme здесь не должно быть кода до проверки что объект уже создан, перенеси его ниже
         Task.create(this.$context);
 
         if (this.$context[0].ListTasks) return;
@@ -20,21 +21,6 @@ class ListTasks
         this.$context[0].ListTasks = this;
 
         this.buildTasks();
-    }
-
-    addTask(name_task, ready = null)
-    {
-        this.$context.prepend(Task.getTemplate(name_task));
-
-        Task.create(this.$context);
-
-        // fixme событие "добавление задачи" а не "добавление события" переименуй OK
-        this.$context.trigger(ListTasks.EVENT_ADD_TASK);
-    }
-
-    getTasks()
-    {
-        return Task.create(this.$context);
     }
 
     buildTasks()
@@ -54,11 +40,31 @@ class ListTasks
 
         this.$context.html(template);
 
+        // fixme зачем это? удалить
         ListTasks.create();
+
         Task.create(this.$context);
 
+		// fixme зачем это? удалить
         new ListTasksStore();
     }
+
+
+	addTask(name_task, ready = null)
+	{
+		this.$context.prepend(Task.getTemplate(name_task));
+
+		Task.create(this.$context);
+
+		this.$context.trigger(ListTasks.EVENT_ADD_TASK);
+	}
+
+
+	getTasks()
+	{
+		return Task.create(this.$context);
+	}
+
 
     /**
      * @param {JQuery} $context
