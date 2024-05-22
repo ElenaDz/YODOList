@@ -1,7 +1,7 @@
 
 class ListTasks
 {
-    static EVENT_ADD_EVENT = 'add_event';
+    static EVENT_ADD_TASK = 'add_event';
 
     /** @type {JQuery} $context */
     $context;
@@ -13,10 +13,11 @@ class ListTasks
     {
         this.$context = $context;
 
-        if (this.$context[0].ListTasks) return;
-        this.$context[0].ListTasks = this;
-
         Task.create(this.$context);
+
+        if (this.$context[0].ListTasks) return;
+
+        this.$context[0].ListTasks = this;
 
         this.buildTasks();
     }
@@ -27,30 +28,36 @@ class ListTasks
 
         Task.create(this.$context);
 
-        // fixme событие "добавление задачи" а не "добавление события" переименуй
-        this.$context.trigger(ListTasks.EVENT_ADD_EVENT);
+        // fixme событие "добавление задачи" а не "добавление события" переименуй OK
+        this.$context.trigger(ListTasks.EVENT_ADD_TASK);
     }
 
-    getTask()
+    getTasks()
     {
-        return(Task.create(this.$context));
+        return Task.create(this.$context);
     }
 
     buildTasks()
     {
 		this.store = new ListTasksStore();
 
-        let build_tasks = '';
+        let list_tasks_store = this.store.getTasks();
+        let template = '';
 
-        this.getTask().forEach((element, index) =>
+        list_tasks_store.forEach((element, index) =>
         {
-            let name = element.getName();
+            let name = element.name;
             let ready = element.ready;
 
-            build_tasks = build_tasks + Task.getTemplate(name, ready);
+            template = template + Task.getTemplate(name, ready);
         });
 
+        this.$context.html(template);
+
         ListTasks.create();
+        Task.create(this.$context);
+
+        new ListTasksStore();
     }
 
     /**

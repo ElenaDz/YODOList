@@ -18,9 +18,20 @@ class Task
         this.$context[0].Task = this;
 
         this.$context.on('click', '.delete', () => {
-            this.delete()
+            this.delete();
+        });
+
+        this.$context.on('click', 'input[type=checkbox]', () =>
+        {
+            if (this.ready) {
+                this.ready = true;
+
+            } else {
+                this.ready = false;
+            }
         });
     }
+
 
     get ready()
     {
@@ -29,16 +40,16 @@ class Task
 
     set ready(ready)
     {
-        this.$context.find('input[type=checkbox]').prop('checked', ready);
-
         this.$context.trigger(Task.EVENT_STATUS_CHANGE);
+
+        this.$context.find('input[type=checkbox]').prop('checked', ready);
     }
 
     delete()
     {
-        this.$context.remove();
-
         this.$context.trigger(Task.EVENT_TASK_DELETE);
+
+        this.$context.remove();
     }
 
     static getTemplate(name, ready = null)
@@ -70,8 +81,10 @@ class Task
         let tasks = [];
         let $tasks = $context.find('.b_task');
 
-        $tasks.each((index, element) => {
+        $tasks.each((index, element) =>
+        {
             let task = new Task($(element));
+
             tasks.push(task);
         });
 
