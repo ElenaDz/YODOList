@@ -19,6 +19,7 @@ class Task
 
         this.$context.on('click', '.delete', () => {
             this.delete();
+
         });
 
         this.$context.on('click', 'input[type=checkbox]', () =>
@@ -40,9 +41,9 @@ class Task
 
     set ready(ready)
     {
-        this.$context.trigger(Task.EVENT_STATUS_CHANGE);
-
         this.$context.find('input[type=checkbox]').prop('checked', ready);
+
+        this.$context.trigger(Task.EVENT_STATUS_CHANGE);
     }
 
 
@@ -54,13 +55,14 @@ class Task
     }
 
 
-    // fixme ready не используется а должен
-    static getTemplate(name, ready = null)
+    // fixme ready не используется а должен ok
+    static getTemplate(name, ready = false)
     {
-        return `
+        let is_checked = ready === false ? '' : 'checked';
+            return `
             <li class="b_task">
                 <div class="inner_task">
-                    <input type="checkbox">
+                    <input type="checkbox" ${is_checked}>
                     <span class="name">${name}</span>
                 </div>
                 <div class="wrap_delete">
@@ -68,11 +70,12 @@ class Task
                 </div>
             </li>
         `;
+
     }
 
 
-    // todo переделай в getter по аналогии как сделано для ready
-    getName()
+    // todo переделай в getter по аналогии как сделано для ready ok
+    get name()
     {
         return this.$context.find('.name').text();
     }

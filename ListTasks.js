@@ -13,21 +13,23 @@ class ListTasks
     {
         this.$context = $context;
 
-        // fixme здесь не должно быть кода до проверки что объект уже создан, перенеси его ниже
-        Task.create(this.$context);
-
         if (this.$context[0].ListTasks) return;
 
         this.$context[0].ListTasks = this;
 
+        // fixme здесь не должно быть кода до проверки что объект уже создан, перенеси его ниже ok
+        Task.create(this.$context);
+
         this.buildTasks();
+
     }
 
     buildTasks()
     {
 		this.store = new ListTasksStore();
 
-        let list_tasks_store = this.store.getTasks();
+        let list_tasks_store = ListTasksStore.getTasks();
+
         let template = '';
 
         list_tasks_store.forEach((element, index) =>
@@ -40,19 +42,13 @@ class ListTasks
 
         this.$context.html(template);
 
-        // fixme зачем это? удалить
-        ListTasks.create();
-
         Task.create(this.$context);
-
-		// fixme зачем это? удалить
-        new ListTasksStore();
     }
 
 
-	addTask(name_task, ready = null)
+	addTask(name_task, ready = false)
 	{
-		this.$context.prepend(Task.getTemplate(name_task));
+		this.$context.prepend(Task.getTemplate(name_task, ready));
 
 		Task.create(this.$context);
 
