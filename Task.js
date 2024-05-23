@@ -55,11 +55,13 @@ class Task
     }
 
 
-    // fixme ready не используется а должен ok
     static getTemplate(name, ready = false)
     {
+        // fixme очень сложная запись тяжело читать, правильно так ready ? 'checked' : ''
+        // fixme не правильное имя пеменной, переменная с именем is_ должна содержать true/false, приставку is_ нужно убрать
         let is_checked = ready === false ? '' : 'checked';
-            return `
+
+        return `
             <li class="b_task">
                 <div class="inner_task">
                     <input type="checkbox" ${is_checked}>
@@ -74,7 +76,6 @@ class Task
     }
 
 
-    // todo переделай в getter по аналогии как сделано для ready ok
     get name()
     {
         return this.$context.find('.name').text();

@@ -17,17 +17,15 @@ class ListTasks
 
         this.$context[0].ListTasks = this;
 
-        // fixme здесь не должно быть кода до проверки что объект уже создан, перенеси его ниже ok
         Task.create(this.$context);
 
         this.buildTasks();
 
+		new ListTasksStore();
     }
 
     buildTasks()
     {
-		this.store = new ListTasksStore();
-
         let list_tasks_store = ListTasksStore.getTasks();
 
         let template = '';

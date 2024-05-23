@@ -1,17 +1,26 @@
-// fixme Так как этот класс не содержить состояния (каких то свойст у которых есть значения) его можно сделать статитческим,
-// тоесть все методы делаем статическими ok
+
 class ListTasksStore
 {
     static keyLocalStore = 'tasks';
 
+    static flag_init;
 
+
+    /** fixme так как мы решили что класс будет статический в нем должно быть конструктора, если все таки конструктор нужен для инициализации
+     * нужно добавить статический методо init (типа инициализация) */
     constructor()
     {
+        // fixme не используется, удалить
         this.$context = $('body');
-
 
         /** @type {ListTasks} */
         let listTasks = ListTasks.create();
+
+        // todo так как в этом методе есть подписки на события, а этом метод может быть вызван несколько раз, и подпиской будет столько сколькр раз он будет вызван
+        // это не то что нам нужно поэтому защищам этот метод от вопторных вызовов, так как класс статический делаем это через статическое свойство, смотри и запомниай, сделал сам
+        if (ListTasksStore.flag_init) return;
+
+		ListTasksStore.flag_init = true;
 
         listTasks.$context.on(ListTasks.EVENT_ADD_TASK, () =>
         {
@@ -20,42 +29,37 @@ class ListTasksStore
 
         let tasks = listTasks.getTasks();
 
+        // fixme index удалить
+        // fixme element переименовать и указать тип
         tasks.forEach((element, index) =>
         {
             element.$context.on(Task.EVENT_STATUS_CHANGE, () =>
             {
-                // fixme здесь мы делаем тоже самое что при добавлении задачи, а именно сохраняем все задачи нопиши тоже что в ListTasksStore.js:20
                 ListTasksStore.setTasks(listTasks.getTasks());
             });
 
             element.$context.on(Task.EVENT_TASK_DELETE, () =>
             {
-				// fixme здесь мы делаем тоже самое что при добавлении задачи, а именно сохраняем все задачи нопиши тоже что в ListTasksStore.js:20 ok
                 ListTasksStore.setTasks(listTasks.getTasks());
             });
         });
-        // fixme почему это внизу? для чего вообще нужны эти строки если они внизу?ok
     }
+
 
     static getTasks()
     {
-        // fixme не подходит такое имя пременной так как оно совпадает с тем когда в нем объект ListTasks, используй например такое list_tasks_store_string ok
         let list_tasks_store_string = localStorage.getItem(ListTasksStore.keyLocalStore);
-        // fixme когда в локал сторе еще ни чего нет может выдать ошибку если ты методу парс скормишь пустую строку JSON.parse('') ok
-        // делай проверку если в строке ни чего сразу делай return не доходя до этой строки ok
+        // fixme замени проверку пустоты на !
         if (list_tasks_store_string === null) return [];
-        // fixme очень распространеная ошибка, содержание перменной изменилось, а название осталось тем же, так нельзя,
-        // это уже не строка это уже массив поэтому подойдет имя list_tasks_store_array ok
-        let list_tasks_store_array = JSON.parse(list_tasks_store_string);
 
-        // fixme этот метод возвращает массив а здесь вовращается Null это вызовет ошибку когда кто то его вызовет и попробует сделать forEach
-        // как это делаешь ты здесь ListTasks.js:47 ok
+        let list_tasks_store_array = JSON.parse(list_tasks_store_string);
+		// fixme замени проверку пустоты на !
         if (list_tasks_store_array === null) return [];
 
        return list_tasks_store_array.map((task_value) =>
        {
             return {
-                ready: task_value.slice(0,1) === '1',
+                ready: task_value.slice(0, 1) === '1',
                 name:  task_value.slice(1)
             }
         });
@@ -67,15 +71,14 @@ class ListTasksStore
      */
     static setTasks(list_tasks)
     {
-        // fixme одно и тоже должно иметь одинаковое имя переменной смотри выше ListTasksStore.js:89 ok
         let list_tasks_store_array = [];
 
-        // fixme переименовать element и указать тип явно ok
         list_tasks.forEach((/** Task */ task) =>
         {
-            // fixme так name или getName ? там только одно ok
+            // fixme избыточная переменная избавься
             let name = task.name;
-            // fixme не используй двойное равно только тройное, двойное делает конвертацию типа, если это не нужно то не нужно его использовать ok
+
+            // fixme удрать === true избыточно
             let ready = task.ready === true ? '1' : '0';
 
             list_tasks_store_array.push(ready + name);
