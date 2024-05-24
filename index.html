@@ -28,6 +28,7 @@
                 <input type="radio" id="all" name="tab" required checked value="2">
                 <span class="mode_name">
                     Все
+                    <!-- fixme измени имя класса на counter_tasks без указания режима, режим должен быть выше на уровне блока указан в label и он там уже есть -->
                     <span class="quantity_all"> (4)</span>
                 </span>
             </label>
@@ -54,9 +55,7 @@
             new FormAdd($('.b_form_add_task'))
         </script>
 
-        <ul class="b_list_tasks">
-
-        </ul>
+        <ul class="b_list_tasks"></ul>
         <script>
             ListTasks.create();
         </script>

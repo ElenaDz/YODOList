@@ -19,7 +19,6 @@ class Task
 
         this.$context.on('click', '.delete', () => {
             this.delete();
-
         });
 
         this.$context.on('click', 'input[type=checkbox]', () =>
@@ -43,7 +42,7 @@ class Task
     {
         this.$context.find('input[type=checkbox]').prop('checked', ready);
 
-        console.log(2)
+        console.log(2);
 
         this.$context.trigger(Task.EVENT_STATUS_CHANGE);
     }
@@ -59,8 +58,6 @@ class Task
 
     static getTemplate(name, ready = false)
     {
-        // fixme очень сложная запись тяжело читать, правильно так ready ? 'checked' : '' ok
-        // fixme не правильное имя пеменной, переменная с именем is_ должна содержать true/false, приставку is_ нужно убрать ok
         let checked = ready ? 'checked' : '';
 
         return `
