@@ -21,7 +21,7 @@ class ListTasks
 
         this.buildTasks();
 
-		new ListTasksStore();
+		ListTasksStore.init();
     }
 
     buildTasks()

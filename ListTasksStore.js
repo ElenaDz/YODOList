@@ -7,10 +7,10 @@ class ListTasksStore
 
 
     /** fixme так как мы решили что класс будет статический в нем должно быть конструктора, если все таки конструктор нужен для инициализации
-     * нужно добавить статический методо init (типа инициализация) */
-    constructor()
+     * нужно добавить статический методо init (типа инициализация) ok */
+    static init()
     {
-        // fixme не используется, удалить
+        // fixme не используется, удалить ok(используем)
         this.$context = $('body');
 
         /** @type {ListTasks} */
@@ -27,21 +27,16 @@ class ListTasksStore
            ListTasksStore.setTasks(listTasks.getTasks());
         });
 
-        let tasks = listTasks.getTasks();
-
-        // fixme index удалить
-        // fixme element переименовать и указать тип
-        tasks.forEach((element, index) =>
+        this.$context.on(Task.EVENT_TASK_DELETE, () =>
         {
-            element.$context.on(Task.EVENT_STATUS_CHANGE, () =>
-            {
-                ListTasksStore.setTasks(listTasks.getTasks());
-            });
+            ListTasksStore.setTasks(listTasks.getTasks());
+        });
 
-            element.$context.on(Task.EVENT_TASK_DELETE, () =>
-            {
-                ListTasksStore.setTasks(listTasks.getTasks());
-            });
+        // Пришлось событие смены статуса тоже повесить на боди, иначе, оно не срабатывала на новые добавленные
+        // таски, потому что не видело их, ошибка подобная ошибки с удалением
+        this.$context.on(Task.EVENT_STATUS_CHANGE, () =>
+        {
+            ListTasksStore.setTasks(listTasks.getTasks());
         });
     }
 
@@ -49,12 +44,12 @@ class ListTasksStore
     static getTasks()
     {
         let list_tasks_store_string = localStorage.getItem(ListTasksStore.keyLocalStore);
-        // fixme замени проверку пустоты на !
-        if (list_tasks_store_string === null) return [];
+        // fixme замени проверку пустоты на ! ok
+        if (!list_tasks_store_string) return [];
 
         let list_tasks_store_array = JSON.parse(list_tasks_store_string);
-		// fixme замени проверку пустоты на !
-        if (list_tasks_store_array === null) return [];
+		// fixme замени проверку пустоты на ! ok
+        if (!list_tasks_store_array) return [];
 
        return list_tasks_store_array.map((task_value) =>
        {
@@ -75,13 +70,10 @@ class ListTasksStore
 
         list_tasks.forEach((/** Task */ task) =>
         {
-            // fixme избыточная переменная избавься
-            let name = task.name;
+            // fixme удрать === true избыточно ok
+            let ready = task.ready ? '1' : '0';
 
-            // fixme удрать === true избыточно
-            let ready = task.ready === true ? '1' : '0';
-
-            list_tasks_store_array.push(ready + name);
+            list_tasks_store_array.push(ready + task.name);
         });
 
         localStorage.setItem(
