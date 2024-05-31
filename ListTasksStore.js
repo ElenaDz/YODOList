@@ -18,22 +18,12 @@ class ListTasksStore
 		ListTasksStore.flag_init = true;
 
 		// fixme вместо этих 3х подписок на событие лучше было бы пописаться на одно Update у ListTasks,
-        // заведи такое событие и переделай этот блок чтобы подписка была на него, я про это подробнее говорил в видео
-        listTasks.$context.on(ListTasks.EVENT_ADD_TASK, () =>
+        // заведи такое событие и переделай этот блок чтобы подписка была на него, я про это подробнее говорил в видео ok
+        listTasks.$context.on(ListTasks.EVENT_UPDATE_LIST_TASKS, () =>
         {
            ListTasksStore.setTasks(listTasks.getTasks());
         });
 
-        this.$context.on(Task.EVENT_TASK_DELETE, () =>
-        {
-            ListTasksStore.setTasks(listTasks.getTasks());
-        });
-
-        // fixme здесь изменила контекст, а в генераторе собтытия забыла, оно всплывает поэтому работает, измени
-        this.$context.on(Task.EVENT_STATUS_CHANGE, () =>
-        {
-            ListTasksStore.setTasks(listTasks.getTasks());
-        });
     }
 
 
@@ -55,15 +45,15 @@ class ListTasksStore
     }
 
 
-    // fixme переменуй параметр в tasks
+    // fixme переменуй параметр в tasks ok
     /**
-     * @param {[Task]} list_tasks
+     * @param {[Task]} tasks
      */
-    static setTasks(list_tasks)
+    static setTasks(tasks)
     {
         let list_tasks_store_array = [];
 
-        list_tasks.forEach((/** Task */ task) =>
+        tasks.forEach((/** Task */ task) =>
         {
             let ready = task.ready ? '1' : '0';
 

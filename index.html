@@ -12,6 +12,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
             integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="Mod.js"></script>
+    <script src="SwitcherMod.js"></script>
     <script src="ListTasksStore.js"></script>
     <script src="FormAdd.js"></script>
     <script src="Task.js"></script>
@@ -23,30 +25,33 @@
     <div class="b_todo_list">
         <h3>TO DO List</h3>
 
-        <div class="swichers b_tabs">
+        <div class="b_switchers b_tabs">
             <label for="all">
-                <input type="radio" id="all" name="tab" required checked value="2">
+                <input type="radio" id="all" name="tab" required checked value="All">
                 <span class="mode_name">
                     Все
-                    <!-- fixme измени имя класса на counter_tasks без указания режима, режим должен быть выше на уровне блока указан в label и он там уже есть -->
-                    <span class="quantity_all"> (4)</span>
+                    <!-- fixme измени имя класса на counter_tasks без указания режима, режим должен быть выше на уровне блока указан в label и он там уже есть ok-->
+                    <span class="counter_tasks">(4)</span>
                 </span>
             </label>
             <label for="unready">
-                <input type="radio" id="unready" name="tab" required value="0">
+                <input type="radio" id="unready" name="tab" required value="ONLY_UNREADY">
                 <span class="mode_name">
                     Неготовые
-                    <span class="quantity_unready"> (3)</span>
+                    <span class="counter_tasks">(3)</span>
                 </span>
             </label>
             <label for="ready">
-                <input type="radio" id="ready" name="tab" required value="1">
+                <input type="radio" id="ready" name="tab" required value="ONLY_READY">
                 <span class="mode_name">
                     Готовые
-                    <span class="quantity_ready"> (1)</span>
+                    <span class="counter_tasks">(1)</span>
                 </span>
             </label>
         </div>
+        <script>
+            SwitcherMod.create();
+        </script>
 
         <form class="b_form_add_task">
             <input class="add_task" type="text" placeholder="Новая задача" required>

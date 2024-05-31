@@ -110,7 +110,7 @@ li .inner_task span {
   display: flex;
   flex-direction: row;
 }
-.b_tabs label .mode_name span {
+.b_tabs label .mode_name .counter_tasks {
   margin: 0 5px;
 }
 

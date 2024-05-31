@@ -1,7 +1,7 @@
 class Task
 {
-    static EVENT_STATUS_CHANGE = 'status_change';
-    static EVENT_TASK_DELETE = 'delete_task';
+    static EVENT_STATUS_CHANGE = 'Task.EVENT_STATUS_CHANGE';
+    static EVENT_TASK_DELETE = 'Task.EVENT_TASK_DELETE';
 
 	/** @type JQuery $context */
 	$context;
@@ -44,7 +44,7 @@ class Task
 
         console.log(2);
 
-        this.$context.trigger(Task.EVENT_STATUS_CHANGE);
+        $('body').trigger(Task.EVENT_STATUS_CHANGE);
     }
 
 
@@ -84,7 +84,7 @@ class Task
     /**
      * @param {JQuery}$context
      */
-    static create($context)
+    static create($context, ready = null)
     {
         let tasks = [];
         let $tasks = $context.find('.b_task');
@@ -92,8 +92,11 @@ class Task
         $tasks.each((index, element) =>
         {
             let task = new Task($(element));
-
-            tasks.push(task);
+            if (ready === null){
+                tasks.push(task);
+            } else if (ready === task.ready) {
+                tasks.push(task);
+            }
         });
 
         return tasks;
