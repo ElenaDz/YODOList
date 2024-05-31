@@ -42,8 +42,6 @@ class Task
     {
         this.$context.find('input[type=checkbox]').prop('checked', ready);
 
-        console.log(2);
-
         $('body').trigger(Task.EVENT_STATUS_CHANGE);
     }
 
@@ -82,7 +80,8 @@ class Task
 
 
     /**
-     * @param {JQuery}$context
+     * @param {JQuery} $context
+     * @param {boolean|null} ready
      */
     static create($context, ready = null)
     {
@@ -92,8 +91,10 @@ class Task
         $tasks.each((index, element) =>
         {
             let task = new Task($(element));
-            if (ready === null){
+
+            if (ready === null) {
                 tasks.push(task);
+
             } else if (ready === task.ready) {
                 tasks.push(task);
             }

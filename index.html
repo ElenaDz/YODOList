@@ -25,16 +25,19 @@
     <div class="b_todo_list">
         <h3>TO DO List</h3>
 
+        <!-- fixme избався от класса b_tabs нет такого блока есть блок b_switchers-->
         <div class="b_switchers b_tabs">
             <label for="all">
                 <input type="radio" id="all" name="tab" required checked value="All">
                 <span class="mode_name">
                     Все
-                    <!-- fixme измени имя класса на counter_tasks без указания режима, режим должен быть выше на уровне блока указан в label и он там уже есть ok-->
+                    <!-- fixme Здесь в html цифр быть не должно они заполняются программно когда ставновиться понятно сколько задач в store -->
+                    <!-- fixme Идеально было бы добавлять скобочки вокруг фильтра с помощью css ::after и ::before -->
                     <span class="counter_tasks">(4)</span>
                 </span>
             </label>
             <label for="unready">
+                <!-- fixme Name здесь должен быть не tab а name (в смысле в блоке mode есть элемент в котором храниться имя режима) -->
                 <input type="radio" id="unready" name="tab" required value="ONLY_UNREADY">
                 <span class="mode_name">
                     Неготовые

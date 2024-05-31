@@ -17,8 +17,6 @@ class ListTasksStore
 
 		ListTasksStore.flag_init = true;
 
-		// fixme вместо этих 3х подписок на событие лучше было бы пописаться на одно Update у ListTasks,
-        // заведи такое событие и переделай этот блок чтобы подписка была на него, я про это подробнее говорил в видео ok
         listTasks.$context.on(ListTasks.EVENT_UPDATE_LIST_TASKS, () =>
         {
            ListTasksStore.setTasks(listTasks.getTasks());
@@ -45,7 +43,6 @@ class ListTasksStore
     }
 
 
-    // fixme переменуй параметр в tasks ok
     /**
      * @param {[Task]} tasks
      */
