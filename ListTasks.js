@@ -2,17 +2,18 @@
 class ListTasks
 {
     static EVENT_ADD_TASK = 'ListTasks.EVENT_ADD_TASK';
-    // fixme слова LIST_TASKS здесь явно лишние удали
-    static EVENT_UPDATE_LIST_TASKS = 'ListTasks.EVENT_UPDATE_LIST_TASKS';
+    // fixme слова LIST_TASKS здесь явно лишние удали OK
+    static EVENT_UPDATE = 'ListTasks.EVENT_UPDATE';
 
-    // fixme слова режим по английски пишеться mode, переименуй везде, используй рефакторинг
-    static MOD_ONLY_READY = 'ONLY_READY';
-    static MOD_ONLY_UNREADY = 'ONLY_UNREADY';
+    // fixme слова режим по английски пишеться mode, переименуй везде, используй рефакторинг ok
+    static MODE_ONLY_READY = 'ONLY_READY';
+    static MODE_ONLY_UNREADY = 'ONLY_UNREADY';
+    static MODE_ALL = 'All';
     static LIST_MODS = [
-        ListTasks.MOD_ONLY_READY,
-        ListTasks.MOD_ONLY_UNREADY,
-        // fixme режим all точно такой же как любой другой, заведи для него константу, а то какая то магическая строка получается
-        'All'
+        ListTasks.MODE_ONLY_READY,
+        ListTasks.MODE_ONLY_UNREADY,
+        ListTasks.MODE_ALL
+        // fixme режим all точно такой же как любой другой, заведи для него константу, а то какая то магическая строка получается OK
     ];
 
 
@@ -38,18 +39,26 @@ class ListTasks
 
         $('body').on(ListTasks.EVENT_ADD_TASK, () =>
         {
-            this.$context.trigger(ListTasks.EVENT_UPDATE_LIST_TASKS);
+            this.$context.trigger(ListTasks.EVENT_UPDATE);
         });
 
         $('body').on(Task.EVENT_TASK_DELETE, () =>
         {
-            this.$context.trigger(ListTasks.EVENT_UPDATE_LIST_TASKS);
+            this.$context.trigger(ListTasks.EVENT_UPDATE);
         });
 
         $('body').on(Task.EVENT_STATUS_CHANGE, () =>
         {
-            this.$context.trigger(ListTasks.EVENT_UPDATE_LIST_TASKS);
+            this.$context.trigger(ListTasks.EVENT_UPDATE);
         });
+
+        let mods = Mode.create();
+
+        mods.forEach( (mode) =>
+        {
+            mode.buildCounters(this);
+        });
+
     }
 
     buildTasks()
@@ -87,32 +96,50 @@ class ListTasks
 		return Task.create(this.$context, ready);
 	}
 
-    get mod()
+    get mode()
     {
-        let mod_active = '';
+        let mode_active = '';
 
-        ListTasks.LIST_MODS.forEach((mod) =>
+        ListTasks.LIST_MODS.forEach((mode) =>
         {
-            if (this.$context.hasClass(mod)){
-                mod_active = mod;
+            if (this.$context.hasClass(mode)){
+                mode_active = mode;
             }
         });
 
-        return mod_active;
+        return mode_active;
     }
 
-    set mod(mod)
+    set mode(mode)
     {
-        // fixme нужно перебрать циклом все режимы
-        this.$context.removeClass(ListTasks.MOD_ONLY_READY);
-        this.$context.removeClass(ListTasks.MOD_ONLY_UNREADY);
-
+        // fixme нужно перебрать циклом все режимы ok
         let mods = ListTasks.LIST_MODS;
 
-        // fixme здесь я так понимаю ты проверяешь допутимое ли имя режима передано, но это нужно делать в начале метода, так как ты уже удалила старый решим,
-        // так же нужно выдвать ошибку если режим не допустимый
-        if (mods.indexOf(mod) >= 0) {
-            this.$context.addClass(mod)
+        // fixme здесь я так понимаю ты проверяешь допутимое ли имя режима передано, но это нужно делать в начале метода, так как ты уже удалила старый решим, ok
+        // так же нужно выдвать ошибку если режим не допустимый ok
+        if (mods.indexOf(mode) >= 0) {
+            mods.map((mode) => {
+                this.$context.removeClass(mode);
+            });
+
+            this.$context.addClass(mode);
+
+        } else {
+            console.error('Выбран недопустимый режим');
+        }
+    }
+
+    static getReadyForMode(mode)
+    {
+        //  метод возвращаюй ready для определенного режимо
+        if (mode === ListTasks.MODE_ONLY_READY){
+            return 1;
+
+        } else if (mode === ListTasks.MODE_ONLY_UNREADY) {
+            return 0;
+
+        } else {
+            return null;
         }
     }
 

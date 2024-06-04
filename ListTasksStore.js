@@ -17,7 +17,7 @@ class ListTasksStore
 
 		ListTasksStore.flag_init = true;
 
-        listTasks.$context.on(ListTasks.EVENT_UPDATE_LIST_TASKS, () =>
+        listTasks.$context.on(ListTasks.EVENT_UPDATE, () =>
         {
            ListTasksStore.setTasks(listTasks.getTasks());
         });

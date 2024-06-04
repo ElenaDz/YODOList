@@ -95,7 +95,7 @@ class Task
             if (ready === null) {
                 tasks.push(task);
 
-            } else if (ready === task.ready) {
+            } else if (ready == task.ready) {
                 tasks.push(task);
             }
         });

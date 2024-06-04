@@ -107,7 +107,7 @@ li {
 
 }
 
-.b_tabs {
+.b_switcher_mode {
   margin: 5px 0;
   display: flex;
   flex-direction: row;
@@ -128,6 +128,12 @@ li {
 
       .counter_tasks {
         margin: 0 5px;
+      }
+      .counter_tasks::before {
+        content: '(';
+      }
+      .counter_tasks::after {
+        content: ')';
       }
     }
   }

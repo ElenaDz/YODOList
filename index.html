@@ -12,8 +12,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
             integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="Mod.js"></script>
-    <script src="SwitcherMod.js"></script>
+
+    <script src="Mode.js"></script>
+    <script src="SwitcherMode.js"></script>
     <script src="ListTasksStore.js"></script>
     <script src="FormAdd.js"></script>
     <script src="Task.js"></script>
@@ -25,35 +26,35 @@
     <div class="b_todo_list">
         <h3>TO DO List</h3>
 
-        <!-- fixme избався от класса b_tabs нет такого блока есть блок b_switchers-->
-        <div class="b_switchers b_tabs">
-            <label for="all">
-                <input type="radio" id="all" name="tab" required checked value="All">
+        <!-- fixme избався от класса b_tabs нет такого блока есть блок b_switchers ok-->
+        <div class="b_switcher_mode">
+            <label class="b_mode">
+                <input type="radio" name="name" required checked value="All">
                 <span class="mode_name">
                     Все
-                    <!-- fixme Здесь в html цифр быть не должно они заполняются программно когда ставновиться понятно сколько задач в store -->
-                    <!-- fixme Идеально было бы добавлять скобочки вокруг фильтра с помощью css ::after и ::before -->
-                    <span class="counter_tasks">(4)</span>
+                    <!-- fixme Здесь в html цифр быть не должно они заполняются программно когда ставновиться понятно сколько задач в store ok-->
+                    <!-- fixme Идеально было бы добавлять скобочки вокруг фильтра с помощью css ::after и ::before ok-->
+                    <span class="counter_tasks"></span>
                 </span>
             </label>
-            <label for="unready">
-                <!-- fixme Name здесь должен быть не tab а name (в смысле в блоке mode есть элемент в котором храниться имя режима) -->
-                <input type="radio" id="unready" name="tab" required value="ONLY_UNREADY">
+            <label class="b_mode" >
+                <!-- fixme Name здесь должен быть не tab а name (в смысле в блоке mode есть элемент в котором храниться имя режима) ok -->
+                <input type="radio"  name="name" required value="ONLY_UNREADY">
                 <span class="mode_name">
                     Неготовые
-                    <span class="counter_tasks">(3)</span>
+                    <span class="counter_tasks"></span>
                 </span>
             </label>
-            <label for="ready">
-                <input type="radio" id="ready" name="tab" required value="ONLY_READY">
+            <label class="b_mode" >
+                <input type="radio" name="name" required value="ONLY_READY">
                 <span class="mode_name">
                     Готовые
-                    <span class="counter_tasks">(1)</span>
+                    <span class="counter_tasks"></span>
                 </span>
             </label>
         </div>
         <script>
-            SwitcherMod.create();
+            SwitcherMode.create();
         </script>
 
         <form class="b_form_add_task">
