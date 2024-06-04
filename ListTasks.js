@@ -2,10 +2,8 @@
 class ListTasks
 {
     static EVENT_ADD_TASK = 'ListTasks.EVENT_ADD_TASK';
-    // fixme слова LIST_TASKS здесь явно лишние удали OK
     static EVENT_UPDATE = 'ListTasks.EVENT_UPDATE';
 
-    // fixme слова режим по английски пишеться mode, переименуй везде, используй рефакторинг ok
     static MODE_ONLY_READY = 'ONLY_READY';
     static MODE_ONLY_UNREADY = 'ONLY_UNREADY';
     static MODE_ALL = 'All';
@@ -13,7 +11,6 @@ class ListTasks
         ListTasks.MODE_ONLY_READY,
         ListTasks.MODE_ONLY_UNREADY,
         ListTasks.MODE_ALL
-        // fixme режим all точно такой же как любой другой, заведи для него константу, а то какая то магическая строка получается OK
     ];
 
 
@@ -112,12 +109,11 @@ class ListTasks
 
     set mode(mode)
     {
-        // fixme нужно перебрать циклом все режимы ok
         let mods = ListTasks.LIST_MODS;
 
-        // fixme здесь я так понимаю ты проверяешь допутимое ли имя режима передано, но это нужно делать в начале метода, так как ты уже удалила старый решим, ok
-        // так же нужно выдвать ошибку если режим не допустимый ok
-        if (mods.indexOf(mode) >= 0) {
+        // fixme поменяй местами блоки внутри if, первым блоком всегда идет тот который короче
+        if (mods.indexOf(mode) >= 0)
+        {
             mods.map((mode) => {
                 this.$context.removeClass(mode);
             });
@@ -129,10 +125,15 @@ class ListTasks
         }
     }
 
-    static getReadyForMode(mode)
+	/**
+     * Возвращаает ready для определенного режимо
+	 * @param {string} mode
+	 * @return {boolean|null}
+	 */
+	static getReadyForMode(mode)
     {
-        //  метод возвращаюй ready для определенного режимо
-        if (mode === ListTasks.MODE_ONLY_READY){
+        if (mode === ListTasks.MODE_ONLY_READY) {
+            // fixme true так как ready у нас boolean тип, так же замени 0 ниже
             return 1;
 
         } else if (mode === ListTasks.MODE_ONLY_UNREADY) {
