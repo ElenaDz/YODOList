@@ -5,31 +5,28 @@ class SwitcherMode
      */
     constructor($context)
     {
+        // fixme не явное объявление свойства класса, не делай так, объявление должно быть явно, смотри как это сделано в Task, исправь во всех классах
         this.$context = $context;
 
         if (this.$context[0].SwitcherMode) return;
 
         this.$context[0].SwitcherMode = this;
 
+		// fixme не явное объявление свойства класса
         this.modes = Mode.create(this.$context);
 
         this.$context.on(Mode.EVENT_SELECT, () =>
         {
-            // todo должно быть что то вроде такого ok
             ListTasks.create().mode = this.selectedMode;
-
         });
     }
 
-    // fixme так не пойдет, договор был что ты сделаешь скрытие задач с помощью css а не js, ok
-    // здесь мы только добавляем режим списку задач, а именно css класс, а css делает все остальное
-    // такое решение как ты сделала это потенциальная головная боль, нельзя просто так скрывать и показывать какие то блоки,
-    // показывается блок или скрыт должно зависять от css классов, а не от js
 
     get selectedMode()
     {
-        let  selected_mode = '';
+        let selected_mode = '';
 
+        /** fixme следи за тем что ide понимает тип переменных которые ты используешь иначе не будет работать рефакторин, это очень важно, здесь тип нужно указать */
         this.modes.forEach((mode) =>
         {
             if (mode.selected === true) {

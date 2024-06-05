@@ -57,7 +57,7 @@ class Task
     static getTemplate(name, ready = false)
     {
         let checked = ready ? 'checked' : '';
-
+        
         return `
             <li class="b_task">
                 <div class="inner_task">
@@ -95,6 +95,7 @@ class Task
             if (ready === null) {
                 tasks.push(task);
 
+            // fixme сравнение должно быть с помощью === а не ==
             } else if (ready == task.ready) {
                 tasks.push(task);
             }

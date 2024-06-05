@@ -137,20 +137,24 @@ li {
       }
     }
   }
-
-
 }
 
+//
 .b_task:has(input:checked) {
   span {
     text-decoration: line-through;
   }
 }
+
+// fixme итоговый css должен выглядет так b_list_tasks.ONLY_UNREADY
+// fixme не хватает префикса mode_ будет на много понятнее
 .ONLY_UNREADY {
   .b_task:has(input:checked) {
     display: none;
   }
 }
+
+// fixme все классы вы нижнем регистре, а эти в верхнем, приведи эти классы к нижнему регистру only_ready
 .ONLY_READY {
   .b_task:not(:has(input:checked)) {
     display: none;

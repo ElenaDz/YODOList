@@ -7,7 +7,8 @@ class ListTasks
     static MODE_ONLY_READY = 'ONLY_READY';
     static MODE_ONLY_UNREADY = 'ONLY_UNREADY';
     static MODE_ALL = 'All';
-    static LIST_MODS = [
+
+    static LIST_MODES = [
         ListTasks.MODE_ONLY_READY,
         ListTasks.MODE_ONLY_UNREADY,
         ListTasks.MODE_ALL
@@ -97,7 +98,7 @@ class ListTasks
     {
         let mode_active = '';
 
-        ListTasks.LIST_MODS.forEach((mode) =>
+        ListTasks.LIST_MODES.forEach((mode) =>
         {
             if (this.$context.hasClass(mode)){
                 mode_active = mode;
@@ -109,9 +110,8 @@ class ListTasks
 
     set mode(mode)
     {
-        let mods = ListTasks.LIST_MODS;
+        let mods = ListTasks.LIST_MODES;
 
-        // fixme поменяй местами блоки внутри if, первым блоком всегда идет тот который короче ok
         if (mods.indexOf(mode) < 0) {
             console.error('Выбран недопустимый режим');
 
@@ -132,7 +132,6 @@ class ListTasks
 	static getReadyForMode(mode)
     {
         if (mode === ListTasks.MODE_ONLY_READY) {
-            // fixme true так как ready у нас boolean тип, так же замени 0 ниже ok
             return true;
 
         } else if (mode === ListTasks.MODE_ONLY_UNREADY) {

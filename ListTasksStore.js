@@ -10,12 +10,11 @@ class ListTasksStore
     {
         this.$context = $('body');
 
-        /** @type {ListTasks} */
-        let listTasks = ListTasks.create();
-
         if (ListTasksStore.flag_init) return;
 
 		ListTasksStore.flag_init = true;
+
+		let listTasks = ListTasks.create();
 
         listTasks.$context.on(ListTasks.EVENT_UPDATE, () =>
         {
