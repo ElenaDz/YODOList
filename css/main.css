@@ -124,4 +124,12 @@ li .inner_task span {
   text-decoration: line-through;
 }
 
+.ONLY_UNREADY .b_task:has(input:checked) {
+  display: none;
+}
+
+.ONLY_READY .b_task:not(:has(input:checked)) {
+  display: none;
+}
+
 /*# sourceMappingURL=main.css.map */

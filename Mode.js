@@ -16,24 +16,24 @@ class Mode
         this.$context.on('click', (e) =>
         {
             // Здесь есть проблема  , если клик по лейблу происходит, он считается 2 раза, если по инпуту, то 1
-            // fixme это видимо связано с всплыванием события или типа того, решается проверкой свойства selectMode здесь если true то выходим отсюда не генерируя событие
+            // fixme это видимо связано с всплыванием события или типа того, решается проверкой свойства selected здесь если true то выходим отсюда не генерируя событие (не понадобилось)
             this.$context.trigger(Mode.EVENT_SELECT);
         });
 
 
         $('body').on(ListTasks.EVENT_UPDATE,() =>
         {
-            let listTasks = ListTasks.create();
-
-            this.buildCounters(listTasks);
+            this.updateCounter();
         })
 
     }
 
-    // fixme переименуй в updateCounter
-    // fixme не надо передавать listTasks получай его внутри метода
-    buildCounters(listTasks)
+    // fixme переименуй в updateCounter ok
+    // fixme не надо передавать listTasks получай его внутри метода ok
+    updateCounter()
     {
+        let listTasks = ListTasks.create();
+
         let ready = ListTasks.getReadyForMode(this.name);
 
         let tasks = listTasks.getTasks(ready);
@@ -51,8 +51,8 @@ class Mode
         this.$context.find('.counter_tasks').text(count);
     }
 
-    // fixme переименовать в selected (выбранный да или нет), свойство checked которое ты проверяешь должно было тебе это подсказать
-    get selectMode()
+    // fixme переименовать в selected (выбранный да или нет), свойство checked которое ты проверяешь должно было тебе это подсказать ok
+    get selected()
     {
         return this.$context.find('input[type=radio]').prop('checked');
     }

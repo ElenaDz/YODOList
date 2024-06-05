@@ -53,7 +53,7 @@ class ListTasks
 
         mods.forEach( (mode) =>
         {
-            mode.buildCounters(this);
+            mode.updateCounter();
         });
 
     }
@@ -111,17 +111,16 @@ class ListTasks
     {
         let mods = ListTasks.LIST_MODS;
 
-        // fixme поменяй местами блоки внутри if, первым блоком всегда идет тот который короче
-        if (mods.indexOf(mode) >= 0)
-        {
+        // fixme поменяй местами блоки внутри if, первым блоком всегда идет тот который короче ok
+        if (mods.indexOf(mode) < 0) {
+            console.error('Выбран недопустимый режим');
+
+        } else {
             mods.map((mode) => {
                 this.$context.removeClass(mode);
             });
 
             this.$context.addClass(mode);
-
-        } else {
-            console.error('Выбран недопустимый режим');
         }
     }
 
@@ -133,11 +132,11 @@ class ListTasks
 	static getReadyForMode(mode)
     {
         if (mode === ListTasks.MODE_ONLY_READY) {
-            // fixme true так как ready у нас boolean тип, так же замени 0 ниже
-            return 1;
+            // fixme true так как ready у нас boolean тип, так же замени 0 ниже ok
+            return true;
 
         } else if (mode === ListTasks.MODE_ONLY_UNREADY) {
-            return 0;
+            return false;
 
         } else {
             return null;
