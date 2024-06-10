@@ -18,7 +18,7 @@ class ButtonDelete
         this.$context.on('click', (/** ButtonDelete */ button) =>
         {
             // fixme для получения data атрибута воспользуйся функцией data JQuery
-            // fixme получаешь mode и засовываешь в переменную ready, ерунда исправляй, пересмотри видео если не понимаешь откуда взять ready
+			// fixme слишком сложная строка разбей на 2 строки
             let ready = ListTasks.getReadyForMode(button.currentTarget.getAttribute('data-for_mode'));
 
             let tasks = Task.create($('body'), ready);
