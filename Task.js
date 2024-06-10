@@ -69,7 +69,6 @@ class Task
                 </div>
             </li>
         `;
-
     }
 
 
@@ -82,6 +81,7 @@ class Task
     /**
      * @param {JQuery} $context
      * @param {boolean|null} ready
+     * @return Task[]
      */
     static create($context, ready = null)
     {
@@ -95,7 +95,6 @@ class Task
             if (ready === null) {
                 tasks.push(task);
 
-            // fixme сравнение должно быть с помощью === а не == ок
             } else if (ready === task.ready) {
                 tasks.push(task);
             }
