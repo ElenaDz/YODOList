@@ -2,6 +2,9 @@ class Mode
 {
     static EVENT_SELECT = 'Mode.EVENT_SELECT';
 
+    /** @type JQuery $context */
+    $context;
+
     /**
      * @param {JQuery} $context
      */

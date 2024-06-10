@@ -8,8 +8,6 @@ class ListTasksStore
 
     static init()
     {
-        this.$context = $('body');
-
         if (ListTasksStore.flag_init) return;
 
 		ListTasksStore.flag_init = true;

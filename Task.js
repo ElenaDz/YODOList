@@ -95,8 +95,8 @@ class Task
             if (ready === null) {
                 tasks.push(task);
 
-            // fixme сравнение должно быть с помощью === а не ==
-            } else if (ready == task.ready) {
+            // fixme сравнение должно быть с помощью === а не == ок
+            } else if (ready === task.ready) {
                 tasks.push(task);
             }
         });

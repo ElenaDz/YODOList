@@ -12,7 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
             integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    <script src="ButtonDelete.js"></script>
     <script src="Mode.js"></script>
     <script src="SwitcherMode.js"></script>
     <script src="ListTasksStore.js"></script>
@@ -28,21 +28,21 @@
 
         <div class="b_switcher_mode">
             <label class="b_mode">
-                <input type="radio" name="name" required checked value="All">
+                <input type="radio" name="name" required checked value="mode_all">
                 <span class="mode_name">
                     Все
                     <span class="counter_tasks"></span>
                 </span>
             </label>
             <label class="b_mode" >
-                <input type="radio" name="name" required value="ONLY_UNREADY">
+                <input type="radio" name="name" required value="mode_only_unready">
                 <span class="mode_name">
                     Неготовые
                     <span class="counter_tasks"></span>
                 </span>
             </label>
             <label class="b_mode" >
-                <input type="radio" name="name" required value="ONLY_READY">
+                <input type="radio" name="name" required value="mode_only_ready">
                 <span class="mode_name">
                     Готовые
                     <span class="counter_tasks"></span>
@@ -63,10 +63,14 @@
         <ul class="b_list_tasks"></ul>
         <script>
             ListTasks.create();
+
         </script>
 
-        <button class="delete_all">Удалить все</button>
-        <button class="delete_ready">Удалить готовые</button>
+        <button class="b_button_delete" data-for_mode="mode_all">Удалить все</button>
+        <button class="b_button_delete" data-for_mode="mode_only_ready">Удалить готовые</button>
+        <script>
+            ButtonDelete.create();
+        </script>
     </div>
 </body>
 </html>

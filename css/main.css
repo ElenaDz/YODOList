@@ -124,11 +124,11 @@ li .inner_task span {
   text-decoration: line-through;
 }
 
-.ONLY_UNREADY .b_task:has(input:checked) {
+.b_list_tasks.mode_only_unready .b_task:has(input:checked) {
   display: none;
 }
 
-.ONLY_READY .b_task:not(:has(input:checked)) {
+.b_list_tasks.mode_only_ready .b_task:not(:has(input:checked)) {
   display: none;
 }
 

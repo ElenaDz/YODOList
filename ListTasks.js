@@ -4,9 +4,9 @@ class ListTasks
     static EVENT_ADD_TASK = 'ListTasks.EVENT_ADD_TASK';
     static EVENT_UPDATE = 'ListTasks.EVENT_UPDATE';
 
-    static MODE_ONLY_READY = 'ONLY_READY';
-    static MODE_ONLY_UNREADY = 'ONLY_UNREADY';
-    static MODE_ALL = 'All';
+    static MODE_ONLY_READY = 'mode_only_ready';
+    static MODE_ONLY_UNREADY = 'mode_only_unready';
+    static MODE_ALL = 'mode_all';
 
     static LIST_MODES = [
         ListTasks.MODE_ONLY_READY,
