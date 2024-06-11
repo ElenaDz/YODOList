@@ -17,7 +17,6 @@ class SwitcherMode
 
         this.$context[0].SwitcherMode = this;
 
-		// fixme не явное объявление свойства класса ok?
         this.modes = Mode.create(this.$context);
 
         this.$context.on(Mode.EVENT_SELECT, () =>
