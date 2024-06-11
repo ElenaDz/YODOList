@@ -14,12 +14,14 @@ class ButtonDelete
 
         this.$context[0].ButtonDelete = this;
 
-        // fixme здесь аргумент будет event, а не button
-        this.$context.on('click', (/** ButtonDelete */ button) =>
+        // fixme здесь аргумент будет event, а не button ok
+        this.$context.on('click', (event) =>
         {
-            // fixme для получения data атрибута воспользуйся функцией data JQuery
-			// fixme слишком сложная строка разбей на 2 строки
-            let ready = ListTasks.getReadyForMode(button.currentTarget.getAttribute('data-for_mode'));
+            // fixme для получения data атрибута воспользуйся функцией data JQuery ok
+			// fixme слишком сложная строка разбей на 2 строки ok
+            let  mode = $(event.currentTarget).attr('data-for_mode');
+
+            let ready = ListTasks.getReadyForMode(mode);
 
             let tasks = Task.create($('body'), ready);
 

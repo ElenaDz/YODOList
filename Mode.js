@@ -59,16 +59,16 @@ class Mode
      */
     static create($context = $('.b_switcher_mode'))
     {
-        let mods = [];
+        let modes = [];
 
-        let $mods = $context.find('.b_mode');
+        let $modes = $context.find('.b_mode');
 
-        $mods.each((index, element) =>
+        $modes.each((index, element) =>
         {
             let mode = new Mode($(element));
-            mods.push(mode);
+            modes.push(mode);
         });
 
-        return mods;
+        return modes;
     }
 }
