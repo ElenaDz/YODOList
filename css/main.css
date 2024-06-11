@@ -37,6 +37,13 @@ button {
   font-family: "Roboto", sans-serif;
 }
 
+.b_button_delete:active {
+  background-color: lightgray;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+}
+
 h3 {
   display: flex;
   justify-content: center;
